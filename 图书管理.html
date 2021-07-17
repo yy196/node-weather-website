@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+<script>
+  //防抖 只有最后一次事件触发才执行函数，前面只要有新事件触发就清除之前的定时器
+  let timer1 = null
+
+  const log = () => {
+    timer1 = setTimeout(() => {
+      console.log(111);
+
+    }, 500);
+  }
+  document.addEventListener('mousemove', (e) => {
+    clearTimeout(timer1)
+    log()
+  })
+
+  //节流  每隔一段时间执行一次函数，只有定时器到期，再结束占用
+  let timer2 = null;
+
+  document.addEventListener('mousemove', (e) => {
+
+    if (timer2) { return }
+    timer2 = setTimeout(() => {
+      console.log(222);
+      timer2 = null;
+    }
+      , 1600)
+  })
+</script>
+
+
+<body>
+
+</body>
+
+</html>
